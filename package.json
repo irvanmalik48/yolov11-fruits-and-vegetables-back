@@ -1,0 +1,20 @@
+{
+  "name": "elysia",
+  "displayName": "Project Elysia",
+  "version": "1.0.0",
+  "license": "RCCL",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc src/index.ts --outDir dist",
+    "start": "NODE_ENV=production node dist/index.js"
+  },
+  "dependencies": {
+    "@elysiajs/node": "^1.2.6",
+    "elysia": "^1.2.22"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}
