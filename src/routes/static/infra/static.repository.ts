@@ -42,6 +42,9 @@ export class RootRepository {
         process.env.NODE_ENV === "production" ? "production" : "development",
     });
 
+    if (process.env.NODE_ENV === "development")
+      console.log("[A-E] `/v1` accessed. Welcome message sent.");
+
     return message;
   }
 
@@ -94,6 +97,9 @@ export class RootRepository {
         },
       ],
     });
+
+    if (process.env.NODE_ENV === "development")
+      console.log("[A-E] `/v1/endpoints` accessed. List of endpoints sent.");
 
     return message;
   }
