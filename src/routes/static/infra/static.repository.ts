@@ -39,7 +39,7 @@ export class RootRepository {
       version: "1.0.0",
       apiPrefix: "v1",
       environment:
-        process.env.BUILD_ENV === "production" ? "production" : "development",
+        process.env.NODE_ENV === "production" ? "production" : "development",
     });
 
     return message;
