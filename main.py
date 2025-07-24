@@ -15,6 +15,7 @@ import io
 from PIL import Image
 from ultralytics import YOLO
 from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
 # --- FastAPI App Initialization ---
@@ -22,9 +23,21 @@ import uvicorn
 # We've added a title and version for the API documentation.
 app = FastAPI(
     title="Fruit & Vegetable Classifier API",
-    description="An API that uses a YOLOv8 model to classify images of fruits and vegetables.",
+    description="An API that uses a YOLOv11 model to classify images of fruits and vegetables.",
     version="1.0.0",
 )
+
+# --- CORS (Cross-Origin Resource Sharing) Middleware ---
+# This middleware allows the API to be called from web pages hosted on different domains.
+# The settings below are permissive, allowing all origins, methods, and headers.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allows all headers
+)
+
 
 # --- Model and Labels Configuration ---
 # Define the path to your trained YOLO model file.
@@ -127,6 +140,6 @@ async def root():
 # This block allows the script to be run directly using 'python main.py'.
 # However, for production, it's recommended to use Uvicorn as shown in the top comments.
 if __name__ == "__main__":
-    print("--- Starting FastAPI Server for YOLOv8 Classification ---")
+    print("--- Starting FastAPI Server for YOLOv11 Classification ---")
     print("To access the interactive API docs, open: http://127.0.0.1:8000/docs")
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
